@@ -2,7 +2,11 @@ FROM debian:12-slim
 
 RUN mkdir -p /etc/automysqlbackup/
 
-RUN apk add --no-cache mariadb-client pigz xz
+RUN apt-get update \
+    apt-get install -y mariadb-client pigz xz \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 COPY automysqlbackup /app
 COPY automysqlbackup.conf /etc/automysqlbackup/automysqlbackup.conf
