@@ -1,4 +1,4 @@
-FROM alpine
+FROM debian:12-slim
 
 RUN mkdir -p /etc/automysqlbackup/
 
